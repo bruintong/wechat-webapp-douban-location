@@ -2,6 +2,7 @@
 var app = getApp();
 Page({
   data: {
+    gpsCity: {},
     locs: [],
     city: null,
     hotCityUid: ["beijing", "shanghai", "guangzhou", "shenzhen", "chengdu", "nanjing", "wuhan", "hangzhou", "chongqing"],
@@ -11,10 +12,18 @@ Page({
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
+    var id = options.id;
+    var uid = options.uid;
+    var name = options.name;
+    var gpsCity = {
+      "id": id,
+      "uid": uid,
+      "name": name
+    }
     var city = app.globalData.city;
     var locs = app.globalData.locs;
     this.setData({
-      locs: locs
+      locs: locs, gpsCity: gpsCity
     });
     this.processCityListData(locs);
   },
@@ -70,6 +79,9 @@ Page({
     var locId = event.currentTarget.dataset.id;
     var city = event.currentTarget.dataset.name;
     var cityUid = event.currentTarget.dataset.uid;
+    var currentLoc = {
+      "id": locId, "name": city, "uid": cityUid
+    };
     wx.navigateBack({
       delta: 1, // 回退前 delta(默认为1) 页面
       success: function (res) {
@@ -77,6 +89,7 @@ Page({
         app.globalData.locId = locId;
         app.globalData.city = city;
         app.globalData.cityUid = cityUid;
+        app.globalData.currentLoc = currentLoc;
       }
     });
   }

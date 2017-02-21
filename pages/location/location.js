@@ -4,6 +4,7 @@ Page({
   data: {
     locs: [],
     city: "深圳",
+    currentLoc: { "name": "深圳" },
     defaultUid: "shenzhen"
   },
   onLoad: function (options) {
@@ -24,9 +25,12 @@ Page({
   onShow: function () {
     // 页面显示
     console.log("onShow");
-    if (app.globalData.reflesh && app.globalData.reflesh == "true") {
+    if (app.globalData.reflesh) {
+      console.log("reflesh");
       app.globalData.reflesh = null;
-      getEventByLocationId(app.globalData.locId);
+      this.setData({ "currentLoc": app.globalData.currentLoc });
+
+      this.getEventByLocationId(app.globalData.locId);
     }
   },
   onHide: function () {
@@ -40,7 +44,7 @@ Page({
   /** 获取城市列表 */
   getLocationListData: function () {
     var that = this;
-    var cityListURL = app.globalData.doubanBase + app.globalData.loc_list;
+    var cityListURL = app.globalData.doubanBase + app.globalData.loc_list_url;
     wx.request({
       url: cityListURL,
       data: {},
@@ -61,20 +65,23 @@ Page({
     }
     // 默认加载当前城市的活动，如果不支持当前城市，则默认加载深圳的活动
     var cityUid = app.globalData.cityUid;
+    var currentLoc = null;
     if (!locs[cityUid]) {
-      var defaultLoc = locs[defaultUid].loc;
-      app.globalData.locId = defaultLoc.id;
-      app.globalData.city = defaultLoc.name;
+      currentLoc = locs[defaultUid];
+    } else {
+      currentLoc = locs[cityUid];
     }
+    app.globalData.locId = currentLoc.id;
+    app.globalData.city = currentLoc.name;
     app.globalData.locs = locs;
     // 获取当前城市名称，如果当前城市不再列表中，则显示深圳
-    this.setData({ "city": app.globalData.city });
+    this.setData({ "city": app.globalData.city, "currentLoc": currentLoc });
 
   },
   /** 选择城市 */
   bindLocation: function (event) {
     wx.navigateTo({
-      url: '/pages/location/select-city/select-city'
+      url: '/pages/location/select-city/select-city?id=' + this.data.currentLoc.id + "&&name=" + this.data.currentLoc.name + "&&uid=" + this.data.currentLoc.uid
     });
   },
   /** 获取活动信息列表 */

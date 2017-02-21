@@ -9,7 +9,7 @@
   </view>
   <text class="gps-title">GPS定位城市</text>
   <view class="gps-city-content">
-    <text class="gps-loc">深圳</text>
+    <text class="gps-loc" data-id="{{gpsCity.id}}" data-name="{{gpsCity.name}}" data-uid="{{gpsCity.uid}}" bindtap="bindCityTap">深圳</text>
   </view>
   <text class="hot-city-title">热门城市</text>
   <view class="hot-city">

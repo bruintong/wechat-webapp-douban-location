@@ -4,13 +4,14 @@ App({
         latitude: null,
         longitude: null,
         locs: null,
+        currentLoc: null,
         city: null,
         reflesh: false,
         locId: null,
         doubanBase: "https://api.douban.com",
-        loc_list: "/v2/loc/list",
-        loc: "/v2/loc/",
-        event_list: "/v2/event/list"
+        loc_list_url: "/v2/loc/list",
+        loc_url: "/v2/loc/",
+        event_list_url: "/v2/event/list"
     },
     onLaunch: function () {
         // Do something initial when launch.
