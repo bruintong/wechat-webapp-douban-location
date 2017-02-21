@@ -2,7 +2,6 @@
   "pages": [
     "pages/location/splash/splash",
     "pages/location/select-city/select-city",
-    "pages/location/select-city/search-city/search-city",
     "pages/location/location"
   ],
   "window": {

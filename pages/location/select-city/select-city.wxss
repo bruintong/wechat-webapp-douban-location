@@ -9,7 +9,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 20rpx 30rpx 20rpx 30rpx;
+  align-self: center;
+  padding: 12rpx 30rpx 12rpx 30rpx;
+  box-sizing: border-box;
 }
 
 .search-session .search-holder {
@@ -18,6 +20,37 @@
   font-size: 28rpx;
   font-weight: 500;
   margin-left: 20rpx;
+}
+
+.search-session .search-input {
+  flex: 1;
+  color: #4a4a4a;
+  font-weight: 500;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}
+
+.search-session .cancel {
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  padding: 6rpx 8rpx 6rpx 8rpx;
+}
+
+.select-city-body {
+  width: 100%;
+  background: red;
+  top: 86rpx;
+  position: fixed;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.select-city-body-hidden {
+  height: -2rpx;
+}
+
+.select-city-body-cover {
+  height: 9999rpx;
 }
 
 .hot-city-content, .list-content {

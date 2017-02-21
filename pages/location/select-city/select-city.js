@@ -2,6 +2,7 @@
 var app = getApp();
 Page({
   data: {
+    searching: false,
     gpsCity: {},
     locs: [],
     city: null,
@@ -41,9 +42,7 @@ Page({
   },
   /** 搜索城市 */
   bindSearch: function (event) {
-    wx.navigateTo({
-      url: '/pages/location/select-city/search-city/search-city'
-    });
+    this.setData({ "searching": true });
   },
   /** 处理城市信息 */
   processCityListData: function (locs) {
@@ -75,6 +74,7 @@ Page({
       });
     }
   },
+  /** 选择城市 */
   bindCityTap: function (event) {
     var locId = event.currentTarget.dataset.id;
     var city = event.currentTarget.dataset.name;
@@ -91,6 +91,20 @@ Page({
         app.globalData.cityUid = cityUid;
         app.globalData.currentLoc = currentLoc;
       }
+    });
+  },
+  /** 点击完成按钮是触发 */
+  handleConfirm: function (event) {
+    console.log("handleConfirm");
+  },
+  /** 搜索框失去焦点是触发 */
+  handleBlur: function (event) {
+    console.log("bindblur");
+  },
+  /** 取消搜索 */
+  handleCancel: function (event) {
+    this.setData({
+      "searching": false
     });
   }
 })
