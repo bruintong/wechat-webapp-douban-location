@@ -1,0 +1,11 @@
+
+<!--pages/location/splash/splash.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view bindtap="bindmottotap" class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>

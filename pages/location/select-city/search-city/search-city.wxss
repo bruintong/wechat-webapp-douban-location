@@ -1,0 +1,23 @@
+/* pages/location/select-city/search-city/search-city.wxss */
+
+Page {
+  opacity: 0.2;
+}
+
+.container {
+  opacity: 0.2;
+}
+
+.search-session {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20rpx 30rpx 20rpx 30rpx;
+}
+
+.search-session .search-input {
+  flex: 1;
+  color: #4a4a4a;
+  font-weight: 500;
+  font-size: 28rpx;
+}

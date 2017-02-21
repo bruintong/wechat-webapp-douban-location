@@ -1,0 +1,32 @@
+
+<!--pages/location/select-city/select-city.wxml-->
+<view class="container">
+  <view class="page-session page-session-spacing">
+    <view class="search-session">
+      <icon type="search" size="16"></icon>
+      <text class="search-holder" bindtap="bindSearch">输入城市名称查询</text>
+    </view>
+  </view>
+  <text class="gps-title">GPS定位城市</text>
+  <view class="gps-city-content">
+    <text class="gps-loc">深圳</text>
+  </view>
+  <text class="hot-city-title">热门城市</text>
+  <view class="hot-city">
+    <view class="hot-city-content">
+      <block wx:for="{{hotCity}}" wx:for-item="city">
+        <text class="city-box" data-id="{{city.id}}" data-name="{{city.name}}" data-uid="{{city.uid}}" bindtap="bindCityTap">{{city.name}}</text>
+      </block>
+    </view>
+  </view>
+  <view class="city-list">
+    <block wx:for="{{letterList}}" wx:for-item="letter">
+      <text class="list-title">{{letter}}</text>
+      <view class="list-content">
+        <block wx:for="{{cityList[letter]}}" wx:for-item="city">
+          <text class="city-block" data-id="{{city.id}}" data-name="{{city.name}}" data-uid="{{city.uid}}" bindtap="bindCityTap">{{city.name}}</text>
+        </block>
+      </view>
+    </block>
+  </view>
+</view>

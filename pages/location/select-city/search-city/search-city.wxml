@@ -1,0 +1,10 @@
+
+<!--pages/location/select-city/search-city/search-city.wxml-->
+<view class="container">
+  <view class="page-session page-session-spacing">
+    <view class="search-session">
+      <icon type="search" size="16"></icon>
+      <input class="search-input" placeholder-class="search-placeholder" value="" placeholder="输入城市名称查询" focus="true" />
+    </view>
+  </view>
+</view>

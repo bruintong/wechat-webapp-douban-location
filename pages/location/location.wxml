@@ -1,0 +1,14 @@
+
+<!--pages/location/location.wxml-->
+<view class="container">
+  <view class="location-session location-session-spacing">
+    <view class="location">
+      <label class="label-city" bindtap="bindLocation">当前城市:
+        <text class="city">{{city}}</text>
+      </label>
+      <label class="label-type" bindtap="bindType">类型 时间 地点
+        <text city="type"></text>
+      </label>
+    </view>
+  </view>
+</view>
