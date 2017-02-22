@@ -1,0 +1,13 @@
+
+<!--pages/location/event-grid/event-grid.wxml-->
+<template name="event-grid-template">
+  <view class="event-wrapper">
+    <view class="event-content">
+      <image class="event-poster" src="{{event.image}}"></image>
+      <view class="event-summary">
+        <text class="event-title">{{event.title}}</text>
+        <text class="event-time">{{event.time_str}}</text>
+      </view>
+    </view>
+  </view>
+</template>

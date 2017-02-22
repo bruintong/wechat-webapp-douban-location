@@ -1,5 +1,6 @@
 
 <!--pages/location/location.wxml-->
+<import src="/pages/location/event-grid/event-grid-template.wxml" />
 <view class="container">
   <view class="location-session location-session-spacing">
     <view class="location">
@@ -11,4 +12,19 @@
       </label>
     </view>
   </view>
+  <block wx:for="{{eventsKey}}" wx:for-item="key">
+    <view class="page-session page-session-spacing">
+      <view class="session-headeer">
+        <text class="session-title">{{eventCategory[key].title}}</text>
+        <text class="more">更多</text>
+      </view>
+      <view class="session-content">
+        <scroll-view class="event-scroll" scroll-x="true">
+          <block wx:for="{{events[key]}}" wx:for-item="event">
+            <template is="event-grid-template" data="{{event}}" />
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+  </block>
 </view>

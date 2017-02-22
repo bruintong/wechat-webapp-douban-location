@@ -26,3 +26,8 @@ page {
   margin-bottom: 30rpx;
   padding-bottom: 30rpx;
 }
+
+.page-session-spacing:last-child {
+  margin-bottom: 0rpx;
+  padding-bottom: 30rpx;
+}

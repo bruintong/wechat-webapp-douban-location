@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/location/splash/splash",
-    "pages/location/select-city/select-city",
-    "pages/location/location"
+    "pages/location/location",
+    "pages/location/select-city/select-city"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

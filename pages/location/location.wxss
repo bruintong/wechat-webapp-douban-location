@@ -1,4 +1,5 @@
 /* pages/location/location.wxss */
+@import "/pages/location/event-grid/event-grid-template.wxss";
 
 .location-session {
   background: #fff;
@@ -31,7 +32,7 @@
   text-indent: 2em;
 }
 
-.label-city::after, .label-type::after {
+.location .label-city::after, .location .label-type::after {
   content: " ";
   display: inline-block;
   position: absolute;
@@ -46,8 +47,53 @@
   transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
 }
 
-.city {
+.location .city {
   font-size: 28rpx;
   font-weight: 500;
   color: #32cd32;
+}
+
+.session-headeer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20rpx 0rpx 20rpx 0rpx;
+  padding: 0rpx 30rpx 0rpx 30rpx;
+}
+
+.session-headeer .session-title {
+  color: #4a4a4a;
+  font-size: 32rpx;
+  font-weight: 500;
+  flex: 1;
+}
+
+.session-headeer .more {
+  color: #32cd32;
+  font-size: 28rpx;
+  margin-right: 20rpx;
+  position: relative;
+}
+
+.session-headeer .more::after {
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  width: 12rpx;
+  height: 12rpx;
+  border-width: 1px 1px 0px 0px;
+  border-style: solid;
+  border-color: #32cd32;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  top: 50%;
+  margin-top: -8rpx;
+}
+
+.session-content {
+  padding: 0rpx 30rpx 0rpx 30rpx;
+}
+
+.event-scroll {
+  width: 100%;
+  white-space: nowrap;
 }

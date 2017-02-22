@@ -5,7 +5,14 @@ Page({
     locs: [],
     city: "深圳",
     currentLoc: { "name": "深圳" },
-    defaultUid: "shenzhen"
+    defaultUid: "shenzhen",
+    districts: [],   // 区域
+    events: {},      // 所有活动
+    eventsKey: [],  // 所有活动中包含的类别，获得的所有活动并不一定所有类别都有
+    eventCategory: {},   // 所有活动类别
+    categoryId: ["10", "18", "11", "17", "13", "12", "14", "15", "16", "19"],   // 所有类别id
+    categoryName: ["music", "film", "drama", "commonweal", "salon", "exhibition", "party", "sports", "travel", "course"],  // 所有类别名称
+    categoryTitle: ["音乐", "电影", "戏剧", "公益", "讲座", "展览", "聚会", "运动", "旅行", "课程"],   // 所有列表标题
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -16,7 +23,22 @@ Page({
       var cityUid = app.globalData.userInfo.city.toLowerCase();
       app.globalData.cityUid = cityUid;
     }
+
+    // 组装活动类型
+    var eventCategory = {};
+    for (let idx in this.data.categoryName) {
+      var id = this.data.categoryId[idx];
+      var name = this.data.categoryName[idx];
+      var title = this.data.categoryTitle[idx];
+      eventCategory[name] = {
+        "id": id, "name": name, "title": title
+      }
+      this.setData({ "eventCategory": eventCategory });
+    }
+
+    // 获取城市列表
     this.getLocationListData();
+
   },
   onReady: function () {
     // 页面渲染完成
@@ -25,11 +47,12 @@ Page({
   onShow: function () {
     // 页面显示
     console.log("onShow");
+    // 界面是否需要重新刷新
     if (app.globalData.reflesh) {
       console.log("reflesh");
       app.globalData.reflesh = null;
       this.setData({ "currentLoc": app.globalData.currentLoc });
-
+      // 根据城市Id获取活动列表
       this.getEventByLocationId(app.globalData.locId);
     }
   },
@@ -77,15 +100,103 @@ Page({
     // 获取当前城市名称，如果当前城市不再列表中，则显示深圳
     this.setData({ "city": app.globalData.city, "currentLoc": currentLoc });
 
+    // 获取当前城市的活动列表
+    this.getEventByLocationId(currentLoc.id);
   },
-  /** 选择城市 */
+  /** 跳转到城市选择页面 */
   bindLocation: function (event) {
+    var parameter = "?id=" + this.data.currentLoc.id + "&&name=" + this.data.currentLoc.name + "&&uid=" + this.data.currentLoc.uid;
     wx.navigateTo({
-      url: '/pages/location/select-city/select-city?id=' + this.data.currentLoc.id + "&&name=" + this.data.currentLoc.name + "&&uid=" + this.data.currentLoc.uid
+      url: '/pages/location/select-city/select-city' + parameter
     });
   },
   /** 获取活动信息列表 */
   getEventByLocationId: function (locId, dayType, eventType) {
+    var that = this;
     console.log("locId: " + locId + ",dayType: " + dayType + ", type: " + eventType);
+    // 拼接参数
+    var parameter = "?";
+    locId && (parameter += "loc=" + locId);
+    dayType && (parameter += "day_type=" + dayType);
+    eventType && (parameter += "type=" + eventType);
+    // 请求活动列表,获取100个活动
+    var eventListURL = app.globalData.doubanBase + app.globalData.event_list_url + parameter + "&&start=0&&count=100";
+    wx.request({
+      url: eventListURL,
+      data: {},
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      header: { 'content-type': 'json' }, // 设置请求的 header
+      success: function (res) {
+        var data = res.data;
+        that.processEventListData(data);
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+    })
   },
+  /** 组装活动列表 */
+  processEventListData: function (data) {
+
+    var events = {};
+    for (let idx in data.events) {
+      var event = data.events[idx];
+      // 判断是否有该类别的集合
+      var category = event.category;
+      if (!events[category]) {
+        events[category] = [];
+      }
+      // 装饰event对象
+      var time_str = event.time_str;
+      var time = "";
+
+      if (typeof time_str == 'string') {
+        var time_arr = time_str.split(" ");
+        time = time_arr[0];
+      }
+
+      var temp = {
+        id: event.id,
+        image: event.image,
+        loc_name: event.loc_name,
+        owner: event.owner,
+        category: event.category,
+        title: event.title,
+        wisher_count: event.wisher_count,
+        has_ticket: event.has_ticket,
+        content: event.content,
+        can_invite: event.can_invite,
+        time_str: time,
+        album: event.album,
+        participant_count: event.participant_count,
+        tags: event.tags,
+        image_hlarge: event.image_hlarge,
+        begin_time: event.begin_time,
+        price_range: event.price_range,
+        geo: event.geo,
+        image_lmobile: event.image_lmobile,
+        loc_id: event.loc_id,
+        end_time: event.end_time,
+        address: event.address,
+      };
+      events[category].push(temp);
+    }
+    var keys = Object.keys(events);
+    keys.sort();
+
+    // 如果活动少于4个则显示
+    var eventsKey = [];
+    for (let i in keys) {
+      var key = keys[i];
+      var arr = events[key];
+      if (arr.length >= 4) {
+        eventsKey.push(key);
+      }
+    }
+
+    this.setData({ "events": events, "eventsKey": eventsKey });
+  }
 })
