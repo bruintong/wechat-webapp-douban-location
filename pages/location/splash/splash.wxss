@@ -5,10 +5,60 @@
   display: flex;
   background: #fff;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
   box-sizing: border-box;
+}
+
+.slogan-paper {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.session-content {
+  position: fixed;
+  width: 100%;
+  bottom: 150rpx;
+}
+
+.slogan-wrapper {
+  display: flex;
+  position: fixed;
+  height: 60%;
+  top: 140rpx;
+  width: 100%;
+  padding: 0rpx 30rpx 0rpx 30rpx;
+  flex-direction: row-reverse;
+  box-sizing: border-box;
+}
+
+.slogan-text {
+  color: #fff;
+  writing-mode: vertical-lr;
+  display: inline-block;
+  font-size: 56rpx;
+  font-weight: 500;
+  margin-left: 12rpx;
+  margin-right: 12rpx;
+}
+
+.slogan-text:last-child {
+  margin-right: 0rpx;
+}
+
+.usermotto {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-motto {
+  color: #9e9e9e;
+  padding: 8rpx 12rpx 8rpx 12rpx;
+  border: 2px solid #6e6e6e;
+  font-weight: 600;
+  border-radius: 4rpx;
 }
 
 .userinfo {
@@ -26,11 +76,4 @@
 
 .userinfo-nickname {
   color: #9e9e9e;
-}
-
-.usermotto {
-  color: #9e9e9e;
-  padding: 4rpx 8rpx 4rpx 8rpx;
-  border: 1px solid #6e6e6e;
-  border-radius: 4rpx;
 }

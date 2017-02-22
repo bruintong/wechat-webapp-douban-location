@@ -8,6 +8,7 @@ App({
         city: null,
         reflesh: false,
         locId: null,
+        slogan: "在这陌生的城市里能与你相遇，真好",
         doubanBase: "https://api.douban.com",
         loc_list_url: "/v2/loc/list",
         loc_url: "/v2/loc/",
