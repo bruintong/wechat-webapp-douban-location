@@ -51,7 +51,14 @@ Page({
     var category = event.category;
     var some_count = "";
     event.wisher_count && (some_count += event.wisher_count + "感兴趣");
-    event.participant_count && (some_count += "/" + event.participant_count + "要参与");
+    event.participant_count && (some_count += " / " + event.participant_count + "要参与");
+
+    var contentStr = event.content;
+    if (typeof contentStr == 'string') {
+      contentStr = contentStr.replace(new RegExp("<br>", "gm"), "\n")
+    }
+    console.log("contentStr: " + contentStr + ", content: " + event.content);
+
     var temp = {
       id: event.id,
       image: event.image,
@@ -62,7 +69,7 @@ Page({
       wisher_count: event.wisher_count,
       some_count: some_count,
       has_ticket: event.has_ticket,
-      content: event.content,
+      content: contentStr,
       can_invite: event.can_invite,
       time_str: event.time_str,
       album: event.album,
