@@ -1,7 +1,7 @@
 
 <!--pages/location/event-grid/event-grid.wxml-->
 <template name="event-grid-template">
-  <view class="event-wrapper">
+  <view class="event-wrapper" bindtap="handleEventTap" data-id="{{event.id}}">
     <view class="event-content">
       <image class="event-poster" src="{{event.image}}"></image>
       <view class="event-summary">

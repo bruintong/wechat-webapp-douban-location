@@ -1,0 +1,111 @@
+/* pages/location/event/event.wxss */
+
+.container {
+  background: #fff;
+}
+
+.event-poster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f8f8f8;
+  white-space: nowrap;
+}
+
+.poster-spacing, .event-session-spacing {
+  margin: 30rpx 0rpx 30rpx 0rpx;
+  padding: 0rpx 30rpx 0rpx 30rpx;
+}
+
+.event-session-spacing {
+  margin: 20rpx 0rpx 20rpx 0rpx;
+  padding: 0rpx 30rpx 0rpx 30rpx;
+}
+
+.event-poster .poster {
+  width: 350rpx;
+  height: 520rpx;
+}
+
+.event-header {
+  display: flex;
+  flex-direction: column;
+  margin: 30rpx 0rpx 30rpx 0rpx;
+  padding: 0rpx 30rpx 0rpx 30rpx;
+  background: #fff;
+}
+
+.event-header .event-title {
+  font-size: 36rpx;
+  color: #4a4a4a;
+}
+
+.event-header .some-count {
+  font-size: 24rpx;
+  color: #9e9e9e;
+}
+
+.user-action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user-action .join, .user-action .wish {
+  color: #de9703;
+  border: 1px solid #de9703;
+  border-radius: 8rpx;
+  text-align: center;
+  padding: 10rpx 100rpx 10rpx 100rpx;
+}
+
+.event-action {
+  display: flex;
+  flex-direction: column;
+}
+
+.event-schedule, .event-map, .event-ticket, .event-phone {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12rpx 0rpx 12rpx 0rpx;
+  border-bottom: 1px solid #e6e6e6;
+  box-sizing: border-box;
+}
+
+.event-action .action-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin: 10rpx;
+}
+
+.event-action .action-label {
+  display: flex;
+  flex: 1;
+  font-size: 28rpx;
+  color: #4a4a4a;
+}
+
+.event-action .action-text {
+  flex: 1;
+  font-size: 24rpx;
+  color: #9e9e9e;
+  text-align: right;
+}
+
+.content-session {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-session .content-title {
+  color: #9e9e9e;
+  font-size: 24rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+}
+
+.content-session .content {
+  color: #4a4a4a;
+  font-size: 24rpx;
+}

@@ -11,6 +11,7 @@ Page({
     eventsKey: [],  // 所有活动中包含的类别，获得的所有活动并不一定所有类别都有
     eventCategory: {},   // 所有活动类别
     categoryId: ["10", "18", "11", "17", "13", "12", "14", "15", "16", "19"],   // 所有类别id
+    categoryColor: ["#666", "#ff6666", "#996699", "#6666cc", "#336699", "#9933cc", "#3399cc", "#cc9933", "#cccc99", "#993333"], // 类别对应不同的背景色
     categoryName: ["music", "film", "drama", "commonweal", "salon", "exhibition", "party", "sports", "travel", "course"],  // 所有类别名称
     categoryTitle: ["音乐", "电影", "戏剧", "公益", "讲座", "展览", "聚会", "运动", "旅行", "课程"],   // 所有列表标题
   },
@@ -30,9 +31,11 @@ Page({
       var id = this.data.categoryId[idx];
       var name = this.data.categoryName[idx];
       var title = this.data.categoryTitle[idx];
+      var color = this.data.categoryColor[idx];
       eventCategory[name] = {
-        "id": id, "name": name, "title": title
+        "id": id, "name": name, "title": title, "color": color
       }
+      app.globalData.eventCategory = eventCategory;
       this.setData({ "eventCategory": eventCategory });
     }
 
@@ -196,7 +199,12 @@ Page({
         eventsKey.push(key);
       }
     }
-
     this.setData({ "events": events, "eventsKey": eventsKey });
+  },
+  handleEventTap: function (event) {
+    var id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/location/event/event?id=' + id
+    });
   }
 })
