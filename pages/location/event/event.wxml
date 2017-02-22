@@ -1,7 +1,7 @@
 
 <!--pages/location/event/event.wxml-->
 <view class="container">
-  <view class="event-poster ">
+  <view class="event-poster {{categoryColor}}">
     <image class="poster poster-spacing" src="/images/default_event_poster.jpg"></image>
   </view>
   <view class="event-header event-session-spacing">

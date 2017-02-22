@@ -109,3 +109,43 @@
   color: #4a4a4a;
   font-size: 24rpx;
 }
+
+.music {
+  background: #666;
+}
+
+.film {
+  background: #f66;
+}
+
+.party {
+  background: #66c;
+}
+
+.drama {
+  background: #969;
+}
+
+.commonweal {
+  background: #66c;
+}
+
+.salon {
+  background: #369;
+}
+
+.exhibition {
+  background: #c93;
+}
+
+.sports {
+  background: #933;
+}
+
+.course {
+  background: #cc9;
+}
+
+.music {
+  background: #666;
+}

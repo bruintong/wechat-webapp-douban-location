@@ -13,7 +13,8 @@ App({
         doubanBase: "https://api.douban.com",
         loc_list_url: "/v2/loc/list",
         loc_url: "/v2/loc/",
-        event_list_url: "/v2/event/list"
+        event_list_url: "/v2/event/list",
+        event_url: "/v2/event/"
     },
     onLaunch: function () {
         // Do something initial when launch.
