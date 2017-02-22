@@ -2,11 +2,11 @@
 <!--pages/location/event/event.wxml-->
 <view class="container">
   <view class="event-poster {{categoryColor}}">
-    <image class="poster poster-spacing" src="/images/default_event_poster.jpg"></image>
+    <image class="poster poster-spacing" src="{{event.image}}"></image>
   </view>
   <view class="event-header event-session-spacing">
-    <text class="event-title">2017华·美术馆新年首展 | 德意志制造联盟——100年的德国建筑与设计</text>
-    <text class="some-count">15人感兴趣/12人要参加/3人已购票</text>
+    <text class="event-title">{{event.title}}</text>
+    <text class="some-count">{{event.some_count}}</text>
   </view>
   <view class="user-action event-session-spacing">
     <text class="wish" bindtap="handleWish">感兴趣</text>
@@ -16,19 +16,19 @@
     <view class="event-schedule" bindtap="handleSchedule">
       <image class="action-icon" src="/images/icon/schedule.png"></image>
       <label class="action-label" for="schedule">活动时间
-        <text id="schedule" class="action-text">2017.06.05</text>
+        <text id="schedule" class="action-text">{{event.time_str}}</text>
       </label>
     </view>
     <view class="event-map" bindtap="handleMap">
       <image class="action-icon" src="/images/icon/map.png"></image>
       <label class="action-label" for="map">查看地图
-        <text id="map" class="action-text">南山文体中心剧院 大剧院 深圳市</text>
+        <text id="map" class="action-text">{{event.address}}</text>
       </label>
     </view>
     <view class="event-ticket" bindtap="handleTicket">
       <image class="action-icon" src="/images/icon/ticket.png"></image>
       <label class="action-label" for="ticket">在线购票
-        <text id="ticket" class="action-text">99起</text>
+        <text id="ticket" class="action-text">{{event.price_range}}</text>
       </label>
     </view>
     <view class="event-phone" bindtap="handlePhone">
@@ -40,6 +40,6 @@
   </view>
   <view class="content-session event-session-spacing">
     <text class="content-title">活动详情</text>
-    <text class="content">活动详情</text>
+    <text class="content">{{event.content}}</text>
   </view>
 </view>

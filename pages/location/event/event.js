@@ -49,6 +49,9 @@ Page({
   processEventData: function (event) {
     // 判断是否有该类别的集合
     var category = event.category;
+    var some_count = "";
+    event.wisher_count && (some_count += event.wisher_count + "感兴趣");
+    event.participant_count && (some_count += "/" + event.participant_count + "要参与");
     var temp = {
       id: event.id,
       image: event.image,
@@ -57,6 +60,7 @@ Page({
       category: event.category,
       title: event.title,
       wisher_count: event.wisher_count,
+      some_count: some_count,
       has_ticket: event.has_ticket,
       content: event.content,
       can_invite: event.can_invite,
@@ -73,7 +77,6 @@ Page({
       end_time: event.end_time,
       address: event.address,
     };
-
     var categoryColor = category;
     this.setData({ "event": temp, "categoryColor": categoryColor });
   },
