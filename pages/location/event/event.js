@@ -125,6 +125,15 @@ Page({
   /** 在线购票 */
   handleTicket: function (event) {
     console.log("handleTicket");
+    wx.showModal({
+      title: '在线购票',
+      content: '请拨打客服热线',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        }
+      }
+    });
   },
   /** 拨打电话 */
   handlePhone: function (event) {
@@ -140,10 +149,22 @@ Page({
   /** 用户感兴趣 */
   handleWish: function (event) {
     console.log("handleWish");
+    var params = "action=wish";
+    this.data.event.title && (params += "&&title=" + this.data.event.title);
+    this.data.event.some_count && (params += "&&somecount=" + this.data.event.some_count);
+    wx.navigateTo({
+      url: '/pages/location/event/action/action?' + params,
+    });
   },
   /** 用户要参加 */
   handleJoin: function (event) {
     console.log("handleJoin");
+    var params = "action=join";
+    this.data.event.title && (params += "&&title=" + this.data.event.title);
+    this.data.event.some_count && (params += "&&somecount=" + this.data.event.some_count);
+    wx.navigateTo({
+      url: '/pages/location/event/action/action?' + params,
+    });
   },
   bindExtend: function (event) {
     this.setData({ "extended": true });

@@ -15,7 +15,7 @@
 .wish-session .wish {
   color: #4a4a4a;
   font-size: 32rpx;
-  font-weight: 500;
+  font-weight: 600;
   position: relative;
   border-bottom: 2px solid #4a4a4a;
   padding-bottom: 10rpx;
@@ -42,7 +42,7 @@
 .join-session .join {
   color: #4a4a4a;
   font-size: 32rpx;
-  font-weight: 500;
+  font-weight: 600;
   position: relative;
   border-bottom: 2px solid #4a4a4a;
   padding-bottom: 10rpx;
@@ -50,14 +50,15 @@
   margin-left: 20rpx;
 }
 
-.wish-session-content {
+.session-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  position: relative;
   padding: 0rpx 30rpx 0rpx 30rpx;
   margin-top: 20rpx;
-  white-space: nowrap;
+  word-break: keep-all;
   box-sizing: border-box;
 }
 
@@ -65,6 +66,7 @@
   margin-top: 30rpx;
   font-weight: 500;
   font-size: 28rpx;
+  text-align: center;
   color: #4a4a4a;
 }
 
@@ -96,4 +98,12 @@
   margin: 0rpx 30rpx 0rpx 30rpx;
   box-sizing: border-box;
   width: 100%;
+}
+
+.left {
+  left: -100%;
+}
+
+.right {
+  right: -100%;
 }

@@ -5,10 +5,10 @@
     <text class="wish" bindtap="handleWish">感兴趣</text>
     <text class="join" bindtap="handleJoin">要参加</text>
   </view>
-  <view class="wish-session-content">
-    <text class="title">断奶的卡发快递了手机发凡是开发</text>
-    <text class="some-count">多久啊拉进来的佳得乐</text>
-    <textarea class="textarea" placeholder-class="placeholder" placeholder="写点评论吧..." />
-    <button class="confirm" size="default" type="primary" bindtap="handleComfirm">确定</button>
+  <view class="session-content {{beforeAnimation}}" animation="{{animationData}}">
+    <text class="title">{{title}}</text>
+    <text class="some-count">{{somecount}}</text>
+    <textarea class="textarea" placeholder-class="placeholder" placeholder="写点评论吧..." focus="true" data-action="{{action}}" bindinput="handleInput" value="{{value}}" />
+    <button class="confirm" size="default" type="primary" bindtap="handleComfirm" data-action="{{action}}">确定</button>
   </view>
 </view>

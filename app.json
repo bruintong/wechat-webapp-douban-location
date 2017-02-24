@@ -2,8 +2,8 @@
   "pages": [
     "pages/location/splash/splash",
     "pages/location/event/event",
-    "pages/location/event/action/action",
     "pages/location/event/poster/poster",
+    "pages/location/event/action/action",
     "pages/location/event/schedule/schedule",
     "pages/location/location",
     "pages/location/select-city/select-city"
