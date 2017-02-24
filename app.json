@@ -6,6 +6,7 @@
     "pages/location/event/action/action",
     "pages/location/event/schedule/schedule",
     "pages/location/location",
+    "pages/location/category/category",
     "pages/location/select-city/select-city"
   ],
   "window": {

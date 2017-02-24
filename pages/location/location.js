@@ -201,10 +201,18 @@ Page({
     }
     this.setData({ "events": events, "eventsKey": eventsKey });
   },
+  /** 查看活动详情 */
   handleEventTap: function (event) {
     var id = event.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/location/event/event?id=' + id
+    });
+  },
+  /** 选择类型 */
+  bindCategory: function (event) {
+    var param = "locId=" + this.data.currentLoc.id;
+    wx.navigateTo({
+      url: '/pages/location/category/category?' + param,
     });
   }
 })

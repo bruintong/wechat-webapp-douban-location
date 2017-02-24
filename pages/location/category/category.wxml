@@ -1,0 +1,40 @@
+
+<!--pages/location/category/category.wxml-->
+<view class="container">
+  <view class="session-header">
+    <text class="type-tab" bindtap="handleType">类型</text>
+    <text class="time-tab" bindtap="handleTime">时间</text>
+    <text class="loc-tab" bindtap="handleLoc">地点</text>
+  </view>
+  <view wx:if="{{false}}" class="category-session">
+    <view class="type-category-session">
+      <block wx:for="{{eventCategory}}" wx:for-item="category">
+        <text class="category {{current == category.id ? 'category-HL': ''}}" catchtap="handleCategory">{{category.title}}</text>
+      </block>
+    </view>
+    <view class="category-cover"></view>
+  </view>
+  <view class="event-session">
+    <view class="event-wrapper">
+      <view class="event-content">
+        <image class="poster" src="/images/default_event_poster.jpg"></image>
+        <view class="event-summary">
+          <view class="type-wrapper">
+            <text class="event-type">展览</text>
+            <text class="distance">4.25km</text>
+          </view>
+          <text class="title">地点发大发第三方法师打发似的发放的第三方发发呆的发放大发阿发发发发的</text>
+          <label class="event-label">地点:
+            <text class="time">地点发大发第三方法师打发似的发放的第三方发发呆的发放大发阿发发发发的</text>
+          </label>
+          <label class="event-label">费用:
+            <text class="location">地点发大发第三方法师打发似的发放的第三方发发呆的发放大发阿发发发发的</text>
+          </label>
+          <label class="event-label">费用:
+            <text class="price">地点发大发第三方法师打发似的发放的第三方发发呆的发放大发阿发发发发的</text>
+          </label>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

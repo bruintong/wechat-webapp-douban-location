@@ -7,7 +7,7 @@
       <label class="label-city" bindtap="bindLocation">当前城市:
         <text class="city">{{currentLoc.name}}</text>
       </label>
-      <label class="label-type" bindtap="bindType">类型 时间 地点
+      <label class="label-type" bindtap="bindCategory">类型 时间 地点
         <text city="type"></text>
       </label>
     </view>
