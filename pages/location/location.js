@@ -122,8 +122,8 @@ Page({
     locId && (parameter += "loc=" + locId);
     dayType && (parameter += "day_type=" + dayType);
     eventType && (parameter += "type=" + eventType);
-    // 请求活动列表,获取100个活动
-    var eventListURL = app.globalData.doubanBase + app.globalData.event_list_url + parameter + "&&start=0&&count=100";
+    // 请求活动列表,获取50个活动
+    var eventListURL = app.globalData.doubanBase + app.globalData.event_list_url + parameter + "&&start=0&&count=50";
     wx.request({
       url: eventListURL,
       data: {},

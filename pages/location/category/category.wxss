@@ -5,22 +5,37 @@
 }
 
 .session-header {
+  position: fixed;
+  z-index: 1;
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: 70rpx;
   align-items: center;
   padding: 16rpx 0rpx 16rpx 0rpx;
   border-width: 1px 0px 1px 0px;
   border-color: #e6e6e6;
   border-style: solid;
+  background: #fff;
+  box-sizing: border-box;
 }
 
 .session-header .type-tab, .session-header .time-tab, .session-header .loc-tab {
-  color: #4a4a4a;
   font-size: 24rpx;
   flex: 1;
   position: relative;
   text-align: center;
+}
+
+.session-header .tab-normal {
+  color: #4a4a4a;
+}
+
+.session-header .tab-HL {
+  color: #32cb32;
+}
+
+.session-header .type-tab, .session-header .time-tab {
   border-right: 1px solid #9e9e9e;
 }
 
@@ -41,14 +56,18 @@
 
 .category-session {
   min-height: 100%;
+  width: 100%;
   display: flex;
+  position: fixed;
+  margin-top: 72rpx;
+  z-index: 1;
   flex-direction: column;
 }
 
 .category-session .category-cover {
   background: #ccc;
   flex-grow: 1;
-  opacity: 0.1;
+  opacity: 0.3;
   width: 100%;
   height: 9999rpx;
 }
@@ -77,6 +96,10 @@
 .type-category-session .category-HL {
   background: #32cb32;
   color: #fff;
+}
+
+.event-session {
+  margin-top: 70rpx;
 }
 
 .event-wrapper {
