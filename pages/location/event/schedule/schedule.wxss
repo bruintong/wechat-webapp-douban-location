@@ -1,0 +1,42 @@
+/* pages/location/event/schedule/schedule.wxss */
+
+.schedule-session {
+  margin-top: 40rpx;
+  width: 100%;
+}
+
+.schedule-session .title {
+  color: #9e9e9e;
+  font-size: 24rpx;
+  padding: 0rpx 30rpx 0rpx 30rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.schedule-session .schedule-wrapper {
+  background: #fff;
+  width: 100%;
+  border-width: 1px 0px 1px 0px;
+  border-style: solid;
+  border-color: #e9e9e9;
+}
+
+.schedule-session .schedule {
+  padding: 20rpx 30rpx 20rpx 30rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.schedule-session .date {
+  font-size: 24rpx;
+  color: #4a4a4a;
+}
+
+.schedule-session .time {
+  font-size: 24rpx;
+  color: #9e9e9e;
+  margin-left: 20rpx;
+}
+
+.schedule-session .schedule:last-child {
+  border-bottom: 0px solid #e9e9e9;
+}

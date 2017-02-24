@@ -1,0 +1,14 @@
+
+<!--pages/location/event/action/action.wxml-->
+<view class="container">
+  <view class="session-header {{action}}-session">
+    <text class="wish" bindtap="handleWish">感兴趣</text>
+    <text class="join" bindtap="handleJoin">要参加</text>
+  </view>
+  <view class="wish-session-content">
+    <text class="title">断奶的卡发快递了手机发凡是开发</text>
+    <text class="some-count">多久啊拉进来的佳得乐</text>
+    <textarea class="textarea" placeholder-class="placeholder" placeholder="写点评论吧..." />
+    <button class="confirm" size="default" type="primary" bindtap="handleComfirm">确定</button>
+  </view>
+</view>

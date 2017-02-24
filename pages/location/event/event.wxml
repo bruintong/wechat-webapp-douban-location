@@ -2,7 +2,7 @@
 <!--pages/location/event/event.wxml-->
 <view class="container">
   <view class="event-poster {{categoryColor}}">
-    <image class="poster poster-spacing" src="{{event.image}}"></image>
+    <image class="poster poster-spacing" src="{{event.image}}" bindtap="handlePosterTap"></image>
   </view>
   <view class="event-header event-session-spacing">
     <text class="event-title">{{event.title}}</text>
@@ -31,15 +31,23 @@
         <text id="ticket" class="action-text">{{event.price_range}}</text>
       </label>
     </view>
-    <view class="event-phone" bindtap="handlePhone">
+    <view wx:if="{{true}}" class="event-phone" bindtap="handlePhone" data-phone="0755-22665577">
       <image class="action-icon" src="/images/icon/phone.png"></image>
       <label class="action-label" for="phone">购票热线
-        <text id="phone" class="action-text">40045125484</text>
+        <text id="phone" class="action-text">0755-22665577</text>
       </label>
     </view>
   </view>
-  <view class="content-session event-session-spacing">
+  <view class="content-session content-session-spacing">
     <text class="content-title">活动详情</text>
-    <text class="content">{{event.content}}</text>
+    <block wx:if="{{event.content}}">
+      <view class="content {{extended ? 'content-auto' : 'content-min'}}">{{event.content}}</view>
+      <block wx:if="{{!extended}}">
+        <view class="content-cover">
+          <view class="cover"></view>
+          <view class="extend" bindtap="bindExtend">展开活动详情</view>
+        </view>
+      </block>
+    </block>
   </view>
 </view>

@@ -12,7 +12,7 @@
   white-space: nowrap;
 }
 
-.poster-spacing, .event-session-spacing {
+.poster-spacing {
   margin: 30rpx 0rpx 30rpx 0rpx;
   padding: 0rpx 30rpx 0rpx 30rpx;
 }
@@ -68,9 +68,25 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 12rpx 0rpx 12rpx 0rpx;
+  position: relative;
+  padding: 12rpx 20rpx 12rpx 0rpx;
   border-bottom: 1px solid #e6e6e6;
   box-sizing: border-box;
+}
+
+.event-schedule::after, .event-map::after, .event-ticket::after,
+.event-phone::after {
+  content: " ";
+  width: 12rpx;
+  height: 12rpx;
+  position: absolute;
+  top: 50%;
+  right: -0rpx;
+  margin-top: -10rpx;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  border-width: 1px 1px 0px 0px;
+  border-color: #9e9e9e;
+  border-style: solid;
 }
 
 .event-action .action-icon {
@@ -89,8 +105,13 @@
 .event-action .action-text {
   flex: 1;
   font-size: 24rpx;
+  max-width: 560rpx;
   color: #9e9e9e;
   text-align: right;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: keep-all;
 }
 
 .content-session {
@@ -108,6 +129,61 @@
 .content-session .content {
   color: #4a4a4a;
   font-size: 24rpx;
+  width: 100%;
+  overflow: hidden;
+}
+
+.content-session-spacing {
+  margin-top: 30rpx;
+  margin-bottom: 60rpx;
+  padding: 0rpx 30rpx 0rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.content-session .content-min {
+  width: 100%;
+  height: 300rpx;
+}
+
+.content-session .content-auto {
+  height: auto;
+}
+
+.content-session .content-cover {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-session .cover {
+  width: 100%;
+  height: 100rpx;
+  margin-top: -100rpx;
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1)); /* Safari 5.1 - 6.0 */
+  background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1)); /* 标准的语法 */
+}
+
+.content-session  .extend {
+  padding: 40rpx 30rpx 40rpx 30rpx;
+  align-self: center;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #32cb32;
+  position: relative;
+  padding-right: 20rpx;
+}
+
+.content-session .extend::after {
+  content: " ";
+  width: 12rpx;
+  height: 12rpx;
+  position: absolute;
+  top: 50%;
+  margin-top: -8rpx;
+  right: -2rpx;
+  transform: matrix(0.71, 0.71, 0.71, -0.71, 0, 0);
+  border-width: 1px 1px 0px 0px;
+  border-color: #32cb32;
+  border-style: solid;
 }
 
 .music {

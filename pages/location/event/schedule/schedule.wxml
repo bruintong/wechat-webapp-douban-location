@@ -1,0 +1,15 @@
+
+<!--pages/location/event/schedule/schedule.wxml-->
+<view class="container">
+  <view class="schedule-session">
+    <view class="title">活动时间</view>
+    <view class="schedule-wrapper">
+      <block wx:for="{{schedule}}" wx:for-item="date">
+        <view class="schedule">
+          <text class="date">{{date}}</text>
+          <text class="time">{{time}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

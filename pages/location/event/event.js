@@ -2,6 +2,7 @@
 var app = getApp();
 Page({
   data: {
+    extended: false,
     categoryColor: "",
     event: {}
   },
@@ -55,7 +56,7 @@ Page({
 
     var contentStr = event.content;
     if (typeof contentStr == 'string') {
-      contentStr = contentStr.replace(new RegExp("<br>", "gm"), "\n")
+      contentStr = contentStr.replace(new RegExp("<br>", "gm"), "\n").replace(new RegExp("<img ", "gm"), "\<image ").replace(new RegExp('alt="">', "gm"), ">\<\/image\>").replace(new RegExp("<div ", "gm"), "\<view ").replace(new RegExp("</div>", "gm"), "\<\/view\>");
     }
     console.log("contentStr: " + contentStr + ", content: " + event.content);
 
@@ -87,13 +88,39 @@ Page({
     var categoryColor = category;
     this.setData({ "event": temp, "categoryColor": categoryColor });
   },
+  /** 查看图片 */
+  handlePosterTap: function (event) {
+    var posterUrl = this.data.event.image;
+    wx.navigateTo({
+      url: '/pages/location/event/poster/poster?posterUrl=' + posterUrl
+    });
+  },
   /** 查看活动时间 */
   handleSchedule: function (event) {
     console.log("handleSchedule");
+    var param = "";
+    this.data.event.title && (param += "title=" + this.data.event.title);
+    this.data.event.begin_time && (param += "&&beginTime=" + this.data.event.begin_time);
+    this.data.event.begin_time && (param += "&&endTime=" + this.data.event.end_time);
+    wx.navigateTo({
+      url: '/pages/location/event/schedule/schedule?' + param
+    });
   },
   /** 查看地图 */
   handleMap: function (event) {
     console.log("handleMap");
+    var geo = this.data.event.geo;
+    if (typeof geo == 'string') {
+      var loc = geo.split(" ");
+      var latitude = parseFloat(loc[0]);
+      var longitude = parseFloat(loc[1]);
+      wx.openLocation({
+        latitude: latitude,
+        longitude: longitude,
+        scale: 28
+      });
+
+    }
   },
   /** 在线购票 */
   handleTicket: function (event) {
@@ -101,7 +128,14 @@ Page({
   },
   /** 拨打电话 */
   handlePhone: function (event) {
+    var phone = event.currentTarget.dataset.phone;
     console.log("handlePhone");
+    wx.makePhoneCall({
+      phoneNumber: phone,
+      success: function (res) {
+        // success
+      }
+    });
   },
   /** 用户感兴趣 */
   handleWish: function (event) {
@@ -111,4 +145,7 @@ Page({
   handleJoin: function (event) {
     console.log("handleJoin");
   },
+  bindExtend: function (event) {
+    this.setData({ "extended": true });
+  }
 })
