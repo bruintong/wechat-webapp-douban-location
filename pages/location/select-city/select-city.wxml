@@ -8,13 +8,29 @@
         <text class="search-holder" bindtap="bindSearch">输入城市名称查询</text>
       </block>
       <block wx:elif="{{searching}}">
-        <input class="search-input" placeholder-class="search-placeholder" value="" placeholder="输入城市名称查询" focus="true" bindconfirm="handleConfirm" bindblur="handleBlur"/>
+        <input class="search-input" placeholder-class="search-placeholder" value="" placeholder="输入城市名称查询" focus="true" bindinput="handleInput" bindconfirm="handleConfirm" bindblur="handleBlur" />
         <text class="cancel" bindtap="handleCancel">取消</text>
       </block>
     </view>
   </view>
-  <view class="select-city-body {{searching ? 'select-city-body-cover' :'select-city-body-hidden'}}">
-  </view>
+  <block wx:if="{{searching}}">
+    <view class="select-city-body {{searching ? 'select-city-body-cover' :'select-city-body-hidden'}}" catchtap="handleCancel">
+    </view>
+    <block wx:if="{{searchLetterList.length > 0}}">
+      <view class="city-list-wrapper">
+        <view class="city-list ">
+          <block wx:for="{{searchLetterList}}" wx:for-item="letter">
+            <text class="list-title">{{letter}}</text>
+            <view class="list-content">
+              <block wx:for="{{searchCityList[letter]}}" wx:for-item="city">
+                <text class="city-block" data-id="{{city.id}}" data-name="{{city.name}}" data-uid="{{city.uid}}" bindtap="bindCityTap">{{city.name}}</text>
+              </block>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </block>
   <text class="gps-title">GPS定位城市</text>
   <view class="gps-city-content">
     <text class="gps-loc" data-id="{{gpsCity.id}}" data-name="{{gpsCity.name}}" data-uid="{{gpsCity.uid}}" bindtap="bindCityTap">{{gpsCity.name}}</text>

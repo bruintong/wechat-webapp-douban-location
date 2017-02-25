@@ -5,7 +5,8 @@ Page({
     searching: false,
     gpsCity: {},
     locs: [],
-    city: null,
+    searchLocs: undefined,
+    city: undefined,
     hotCityUid: ["beijing", "shanghai", "guangzhou", "shenzhen", "chengdu", "nanjing", "wuhan", "hangzhou", "chongqing"],
     hotCity: [],
     letterList: [],
@@ -106,5 +107,44 @@ Page({
     this.setData({
       "searching": false
     });
+  },
+  handleInput: function (event) {
+    var value = event.detail.value;
+    console.log("value: " + value);
+    var searchLocs = {};
+    var searchCityList = {};
+    var searchLetterList = [];
+
+    if (value == "") {
+      this.setData({ "searchLocs": searchLocs, "searchCityList": searchCityList, "searchLetterList": searchLetterList });
+      return;
+    }
+
+    var locKeys = Object.keys(this.data.locs);
+    for (let idx in locKeys) {
+      var key = locKeys[idx];
+      if (key.indexOf(value) != -1) {
+        searchLocs[key] = this.data.locs[key];
+      } else if (this.data.locs[key].name.indexOf(value) != -1) {
+        (searchLocs[key] = this.data.locs[key])
+      }
+    }
+
+    // 按字母顺序排序
+    var keys = Object.keys(searchLocs);
+    keys.sort();
+    // 提取所有城市并按首字母归类
+    for (let idx in keys) {
+      var key = keys[idx];
+      var letter = key.substring(0, 1);
+      var city = searchLocs[key];
+      if (!searchCityList[letter]) {
+        searchCityList[letter] = [];
+        searchLetterList.push(letter);
+      }
+      searchCityList[letter].push(city);
+    }
+
+    this.setData({ "searchLocs": searchLocs, "searchCityList": searchCityList, "searchLetterList": searchLetterList });
   }
 })
