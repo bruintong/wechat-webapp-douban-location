@@ -146,7 +146,7 @@ Page({
         // fail
       },
       complete: function () {
-         wx.hideToast();
+        wx.hideToast();
       }
     })
   },
@@ -220,6 +220,14 @@ Page({
   /** 选择类型 */
   bindCategory: function (event) {
     var param = "locId=" + this.data.currentLoc.id;
+    wx.navigateTo({
+      url: '/pages/location/category/category?' + param,
+    });
+  },
+  /** 用户点击更多，选择某个特定类型的活动 */
+  handleMore: function (event) {
+    var type = event.currentTarget.dataset.type;
+    var param = "locId=" + this.data.currentLoc.id + "&&type=" + type;
     wx.navigateTo({
       url: '/pages/location/category/category?' + param,
     });

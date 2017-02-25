@@ -46,7 +46,7 @@ Page({
     // 全局保存的活动类型信息
     var g_eventCategory = app.globalData.eventCategory;
 
-    this.setData({ "locId": locId, "eventCategory": typeCategory, "current": this.data.type, "typeCategory": typeCategory, "dateCategory": dateCategory, "g_eventCategory": g_eventCategory });
+    this.setData({ "locId": locId, "type": eventType, "eventCategory": typeCategory, "current": this.data.type, "typeCategory": typeCategory, "dateCategory": dateCategory, "g_eventCategory": g_eventCategory });
 
     // 请求活动列表
     this.getEventListData();

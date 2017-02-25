@@ -16,7 +16,7 @@
     <view class="page-session page-session-spacing">
       <view class="session-headeer">
         <text class="session-title">{{eventCategory[key].title}}</text>
-        <text class="more">更多</text>
+        <text class="more" catchtap="handleMore" data-type="{{key}}">更多</text>
       </view>
       <view class="session-content">
         <scroll-view class="event-scroll" scroll-x="true">
