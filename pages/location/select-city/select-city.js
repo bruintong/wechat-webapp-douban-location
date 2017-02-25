@@ -3,6 +3,7 @@ var app = getApp();
 Page({
   data: {
     searching: false,
+    showSearchNone: false,
     gpsCity: {},
     locs: [],
     searchLocs: undefined,
@@ -114,9 +115,9 @@ Page({
     var searchLocs = {};
     var searchCityList = {};
     var searchLetterList = [];
-
+    var readyData = { "searchLocs": searchLocs, "searchCityList": searchCityList, "searchLetterList": searchLetterList, "showSearchNone": false };
     if (value == "") {
-      this.setData({ "searchLocs": searchLocs, "searchCityList": searchCityList, "searchLetterList": searchLetterList });
+      this.setData(readyData);
       return;
     }
 
@@ -132,6 +133,15 @@ Page({
 
     // 按字母顺序排序
     var keys = Object.keys(searchLocs);
+
+    var keyLength = keys.length;
+
+    if (keyLength == 0) {
+      readyData["showSearchNone"] = true;
+      this.setData(readyData);
+      return;
+    }
+
     keys.sort();
     // 提取所有城市并按首字母归类
     for (let idx in keys) {
@@ -145,6 +155,9 @@ Page({
       searchCityList[letter].push(city);
     }
 
-    this.setData({ "searchLocs": searchLocs, "searchCityList": searchCityList, "searchLetterList": searchLetterList });
+    readyData["searchLocs"] = searchLocs;
+    readyData["searchCityList"] = searchCityList;
+    readyData["searchLetterList"] = searchLetterList;
+    this.setData(readyData);
   }
 })

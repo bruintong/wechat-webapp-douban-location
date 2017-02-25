@@ -30,6 +30,9 @@
         </view>
       </view>
     </block>
+    <block wx:if="{{showSearchNone}}">
+      <view class="search-none">这里是空哒~</view>
+    </block>
   </block>
   <text class="gps-title">GPS定位城市</text>
   <view class="gps-city-content">
