@@ -2,10 +2,10 @@
 var app = getApp();
 Page({
   data: {
-    locs: [],
-    city: "深圳",
-    currentLoc: { "name": "深圳" },
-    defaultUid: "shenzhen",
+    locs: [],     // 支持的所有城市
+    city: "深圳",  //  当前所在的城市
+    currentLoc: { "name": "深圳" }, // 默认城市信息
+    defaultUid: "shenzhen",  // 默认城市uid
     districts: [],   // 区域
     events: {},      // 所有活动
     eventsKey: [],  // 所有活动中包含的类别，获得的所有活动并不一定所有类别都有
@@ -20,6 +20,7 @@ Page({
     if (options.latitude && options.longitude) {
       console.log("latitude: " + options.latitude + ", longitude" + options.longitude);
     }
+    // 获取用户所在的城市uid
     if (typeof app.globalData.userInfo.city == "string") {
       var cityUid = app.globalData.userInfo.city.toLowerCase();
       app.globalData.cityUid = cityUid;
@@ -70,6 +71,13 @@ Page({
   /** 获取城市列表 */
   getLocationListData: function () {
     var that = this;
+    // 显示加载中
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 10000
+    });
+
     var cityListURL = app.globalData.doubanBase + app.globalData.loc_list_url;
     wx.request({
       url: cityListURL,
@@ -78,6 +86,7 @@ Page({
       header: { 'content-type': 'json' }, // 设置请求的 header
       success: function (res) {
         var data = res.data.locs;
+        // 组装城市列表
         that.processLocationListData(data);
       }
     })
@@ -137,7 +146,7 @@ Page({
         // fail
       },
       complete: function () {
-        // complete
+         wx.hideToast();
       }
     })
   },

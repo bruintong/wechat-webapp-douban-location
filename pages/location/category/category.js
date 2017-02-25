@@ -2,25 +2,26 @@
 var app = getApp();
 Page({
   data: {
-    locId: "",
-    showCategory: false,
-    isTypeTap: false,
-    isDateTap: false,
-    events: {},
-    g_eventCategory: {},
-    districtsCategory: {},
-    dateCategory: {},
-    typeCategory: {},
-    eventCategory: {},
+    locId: "",               // 当前城市的id
+    showCategory: false,     // 是否显示类型选择列表
+    isTypeTap: false,      // 是否类型标签页被点击
+    isDateTap: false,     // 是否时间标签页被点击
+    events: {},           // 活动列表
+    g_eventCategory: {},  // 全局的类型信息
+    districtsCategory: {},   // 区域类型信息，暂时不会用到，API不支持获取城市某个区域的活动
+    dateCategory: {},       // 活动日期的信息：future, week, weekend, today, tomorrow
+    typeCategory: {},       // 活动的类型信息：all,music, film, drama, commonweal, salon, exhibition, party, sports, travel, others
+    eventCategory: {},     // 当前点击的标签页的类型列表信息
     "current": "",
-    "type": "all",
-    "date": "future",
-    'district': "all"
+    "type": "all",         // 当前选择的活动类型
+    "date": "future",      // 当前选择的活动时间
+    'district': "all"      // 当前选择的活动区域
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     var locId = options.locId;
     var eventType = options.type;
+    // 初始化活动类型列表
     var typeCategory = {
       "all": { "id": "all", "name": "all", "title": "全部" },
       "music": { "id": "music", "name": "music", "title": "音乐" },
@@ -34,6 +35,7 @@ Page({
       "travel": { "id": "travel", "name": "travel", "title": "旅行" },
       "course": { "id": "course", "name": "course", "title": "课程" }
     };
+    // 初始化活动日期类型列表
     var dateCategory = {
       "future": { "id": "future", "name": "future", "title": "全部" },
       "today": { "id": "today", "name": "today", "title": "今天" },
@@ -41,7 +43,7 @@ Page({
       "weekend": { "id": "weekend", "name": "weekend", "title": "周末" },
       "week": { "id": "week", "name": "week", "title": "近期" },
     };
-
+    // 全局保存的活动类型信息
     var g_eventCategory = app.globalData.eventCategory;
 
     this.setData({ "locId": locId, "eventCategory": typeCategory, "current": this.data.type, "typeCategory": typeCategory, "dateCategory": dateCategory, "g_eventCategory": g_eventCategory });
@@ -80,13 +82,12 @@ Page({
     this.setData({ "isDateTap": true });
     console.log("handleTime");
   },
-  /** 选择地点，地点接口不支持，这里查找该城市所有区域的活动 */
+  /** 选择地点，API接口不支持，这里查找该城市所有区域的活动 */
   handleLoc: function (event) {
-
     this.setData({ "eventCategory": this.data.districtsCategory, "current": 'all', "showCategory": true });
     console.log("handleLoc");
   },
-  /** 点击类型 */
+  /** 点击某个子类型 */
   handleCategory: function (event) {
     var id = event.currentTarget.dataset.id;
     var readyData = { "showCategory": false };
@@ -94,10 +95,6 @@ Page({
     this.data.isDateTap && (readyData["date"] = id);
     this.setData(readyData);
 
-    // var param = "?";
-    // this.data.type && (param += "type=" + this.data.type);
-    // this.data.date && (param += "&&day_type=" + this.data.date);
-    // var url = app.globalData.doubanBase + app.globalData.event_list_url + this.data.locId + param;
     this.getEventListData();
     this.resetMenuTap();
   },
@@ -109,6 +106,13 @@ Page({
   getEventListData: function () {
     // 组装URL
     var that = this;
+
+    // 显示加载中
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 10000
+    });
     var params = "?";
     this.data.locId && (params += "loc=" + this.data.locId);
     this.data.type && (params += "&&type=" + this.data.type);
@@ -127,7 +131,7 @@ Page({
         // fail
       },
       complete: function () {
-        // complete
+        wx.hideToast();
       }
     })
   },

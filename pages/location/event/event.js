@@ -28,13 +28,20 @@ Page({
   getEventDatById: function (url) {
     console.log("getEventDataById");
     var that = this;
+
+    // 显示加载中
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 10000
+    });
+
     wx.request({
       url: url,
       data: {},
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       header: { 'content-type': 'json' }, // 设置请求的 header
       success: function (res) {
-        // success
         var data = res.data;
         that.processEventData(data);
       },
@@ -42,7 +49,7 @@ Page({
         // fail
       },
       complete: function () {
-        // complete
+        wx.hideToast();
       }
     })
   },
