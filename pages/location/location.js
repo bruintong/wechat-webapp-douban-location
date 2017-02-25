@@ -88,6 +88,9 @@ Page({
         var data = res.data.locs;
         // 组装城市列表
         that.processLocationListData(data);
+      },
+      complete: function () {
+        //wx.hideToast();
       }
     })
   },
@@ -127,6 +130,14 @@ Page({
     var that = this;
     console.log("locId: " + locId + ",dayType: " + dayType + ", type: " + eventType);
     // 拼接参数
+
+    // 显示加载中
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 10000
+    });
+
     var parameter = "?";
     locId && (parameter += "loc=" + locId);
     dayType && (parameter += "day_type=" + dayType);
