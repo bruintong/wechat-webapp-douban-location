@@ -1,1 +1,21 @@
-# wechat-webapp-douban-location
+# 微信小程序版豆瓣同城
+## 概述
+微信小程序版豆瓣电影（非官方出品）
+- 数据来源：[豆瓣同城API](https://developers.douban.com/wiki/?title=event_v2)
+- 开发工具：微信开发者工具 0.14.140900
+
+
+## 功能
+- 活动列表
+- 城市切换
+- 活动筛选
+- 活动详情
+
+## 预览
+
+
+## 其他
+声明：非豆瓣官方出品，引用请注明出处
+
+## License
+MIT
