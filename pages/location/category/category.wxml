@@ -25,7 +25,7 @@
               <text wx:if="{{false}}" class="distance">4.25km</text>
             </view>
             <text class="title">{{event.title}}</text>
-            <label class="event-label">地点:
+            <label class="event-label">时间:
               <text class="time">{{event.time_str}}</text>
             </label>
             <label class="event-label">地点:
