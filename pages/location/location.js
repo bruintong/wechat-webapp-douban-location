@@ -81,7 +81,10 @@ Page({
     var cityListURL = app.globalData.doubanBase + app.globalData.loc_list_url;
     wx.request({
       url: cityListURL,
-      data: {},
+      data: {
+        "start": 0,
+        "count": 500
+      },
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       header: { 'content-type': 'json' }, // 设置请求的 header
       success: function (res) {
