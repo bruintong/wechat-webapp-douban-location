@@ -1,6 +1,8 @@
 
 <!--pages/location/event/poster/poster.wxml-->
-<view class="poster-session">
-  <image class="download" src="/images/icon/download.png" catchtap="handleDownload"></image>
-  <image class="poster" src="{{posterUrl}}" mode="scaleToFill" bindtap="handleTap"></image>
+<view class="container">
+  <view class="poster-session" style="width:{{windowWidth}}px; height:{{windowHeight}}px">
+    <image class="download" src="/images/icon/download.png" catchtap="handleDownload"></image>
+    <image class="poster" style="width:{{windowWidth}}px; height:{{windowHeight}}px" src="{{posterUrl}}" bindtap="handleTap"></image>
+  </view>
 </view>

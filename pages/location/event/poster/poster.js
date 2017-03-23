@@ -1,12 +1,17 @@
 // pages/location/event/poster/poster.js
+var app = getApp();
 Page({
   data: {
-    posterUrl: ""
+    posterUrl: "",
+    windowWidth: undefined,
+    windowHeight: undefined
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     var posterUrl = options.posterUrl;
-    this.setData({ "posterUrl": posterUrl });
+    var windowWidth = app.globalData.windowWidth;
+    var windowHeight = app.globalData.windowHeight;
+    this.setData({ "posterUrl": posterUrl, "windowWidth": windowWidth, "windowHeight":windowHeight });
   },
   onReady: function () {
     // 页面渲染完成

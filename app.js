@@ -3,6 +3,8 @@ App({
         userInfo: undefined,
         latitude: undefined,
         longitude: undefined,
+        windowWidth: undefined,
+        windowHeight: undefined,
         locs: undefined,
         currentLoc: undefined,
         city: undefined,
@@ -18,6 +20,13 @@ App({
     },
     onLaunch: function () {
         // Do something initial when launch.
+        var that = this;
+        wx.getSystemInfo({
+            success: function (res) {
+                that.globalData.windowWidth = res.windowWidth;
+                that.globalData.windowHeight = res.windowHeight;
+            }
+        });
     },
     onShow: function () {
         // Do something when show.
