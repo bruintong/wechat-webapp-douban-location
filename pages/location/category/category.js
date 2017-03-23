@@ -3,10 +3,12 @@ var app = getApp();
 Page({
   data: {
     locId: "",               // 当前城市的id
+    windowWidth: undefined,   // 视窗宽度
+    windowHeight: undefined,   // 视窗高度
     showCategory: false,     // 是否显示类型选择列表
     isTypeTap: false,      // 是否类型标签页被点击
     isDateTap: false,     // 是否时间标签页被点击
-    events: {},           // 活动列表
+    eventsData: {},           // 活动列表
     g_eventCategory: {},  // 全局的类型信息
     districtsCategory: {},   // 区域类型信息，暂时不会用到，API不支持获取城市某个区域的活动
     dateCategory: {},       // 活动日期的信息：future, week, weekend, today, tomorrow
@@ -46,7 +48,10 @@ Page({
     // 全局保存的活动类型信息
     var g_eventCategory = app.globalData.eventCategory;
 
-    this.setData({ "locId": locId, "type": eventType, "eventCategory": typeCategory, "current": this.data.type, "typeCategory": typeCategory, "dateCategory": dateCategory, "g_eventCategory": g_eventCategory });
+    // 获取视窗宽度、高度
+    var windowWidth = app.globalData.windowWidth;
+    var windowHeight = app.globalData.windowHeight;
+    this.setData({ "locId": locId, "type": eventType, "eventCategory": typeCategory, "current": this.data.type, "typeCategory": typeCategory, "dateCategory": dateCategory, "g_eventCategory": g_eventCategory, "windowWidth": windowWidth, "windowHeight": windowHeight });
 
     // 请求活动列表
     this.getEventListData();
@@ -93,6 +98,7 @@ Page({
     var readyData = { "showCategory": false };
     this.data.isTypeTap && (readyData["type"] = id);
     this.data.isDateTap && (readyData["date"] = id);
+    readyData["eventsData"] = {};
     this.setData(readyData);
 
     this.getEventListData();
@@ -107,6 +113,13 @@ Page({
     // 组装URL
     var that = this;
 
+    var offset = that.data.eventsData["offset"] || 0;
+    var total = that.data.eventsData["total"] || 999;
+
+    if (offset >= total) {
+      return;
+    }
+
     // 显示加载中
     wx.showToast({
       title: '加载中',
@@ -117,7 +130,7 @@ Page({
     this.data.locId && (params += "loc=" + this.data.locId);
     this.data.type && (params += "&&type=" + this.data.type);
     this.data.date && (params += "&&day_type=" + this.data.date);
-    var url = app.globalData.doubanBase + app.globalData.event_list_url + params + "&&start=0&&count=20";
+    var url = app.globalData.doubanBase + app.globalData.event_list_url + params + "&&start=" + offset + "&&count=5";
     wx.request({
       url: url,
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
@@ -125,7 +138,7 @@ Page({
       success: function (res) {
         var data = res.data;
         that.processDistrictsData(data.districts);
-        that.processEventListData(data.events);
+        that.processEventListData(data);
       },
       fail: function () {
         // fail
@@ -144,11 +157,15 @@ Page({
     this.setData({ "districtsCategory": districts });
   },
   /** 组装活动数据 */
-  processEventListData: function (events) {
+  processEventListData: function (data) {
     //events
-    var list = [];
-    for (let idx in events) {
-      var event = events[idx];
+    var list = this.data.eventsData["events"] || [];
+    var offset = this.data.eventsData["offset"] || 0;
+    var total = data.total;
+    offset += data.events.length;
+
+    for (let idx in data.events) {
+      var event = data.events[idx];
       // 装饰event对象
       var time_str = event.time_str;
       var time = "";
@@ -184,8 +201,24 @@ Page({
       };
       list.push(temp);
     }
-    this.setData({ "events": list });
+    var readyData = {};
+    readyData["eventsData"] = {
+      "events": list,
+      "offset": offset,
+      "total": total
+    }
+    this.setData(readyData);
     console.log(this.data);
+  },
+  /** 到达页面底部 */
+  handleLower: function (event) {
+    console.log("handleLower");
+    // 请求活动列表
+    this.getEventListData();
+  },
+  /** 到达页面顶部 */
+  handleUpper: function (event) {
+    console.log("handleUpper");
   },
   /** 查看活动详情 */
   handleEventTap: function (event) {

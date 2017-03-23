@@ -15,28 +15,30 @@
     <view class="category-cover" bindtap="handleCoverTap"></view>
   </view>
   <view class="event-session">
-    <block wx:for="{{events}}" wx:for-item="event">
-      <view class="event-wrapper" bindtap="handleEventTap" data-id="{{event.id}}">
-        <view class="event-content">
-          <image class="poster" src="{{event.image}}"></image>
-          <view class="event-summary">
-            <view class="type-wrapper">
-              <text class="event-type">{{g_eventCategory[event.category].title}}</text>
-              <text wx:if="{{false}}" class="distance">4.25km</text>
+    <scroll-view scroll-y="true" style="width:{{windowWidth}}px; height: {{windowHeight}}px" bindscrolltolower="handleLower" bindscrolltoupper="handleUpper">
+      <block wx:for="{{eventsData.events}}" wx:for-item="event">
+        <view class="event-wrapper" bindtap="handleEventTap" data-id="{{event.id}}">
+          <view class="event-content">
+            <image class="poster" src="{{event.image}}"></image>
+            <view class="event-summary">
+              <view class="type-wrapper">
+                <text class="event-type">{{g_eventCategory[event.category].title}}</text>
+                <text wx:if="{{false}}" class="distance">4.25km</text>
+              </view>
+              <text class="title">{{event.title}}</text>
+              <label class="event-label">时间:
+                <text class="time">{{event.time_str}}</text>
+              </label>
+              <label class="event-label">地点:
+                <text class="location">{{event.address}}</text>
+              </label>
+              <label class="event-label">费用:
+                <text class="price">{{event.price_range}}</text>
+              </label>
             </view>
-            <text class="title">{{event.title}}</text>
-            <label class="event-label">时间:
-              <text class="time">{{event.time_str}}</text>
-            </label>
-            <label class="event-label">地点:
-              <text class="location">{{event.address}}</text>
-            </label>
-            <label class="event-label">费用:
-              <text class="price">{{event.price_range}}</text>
-            </label>
           </view>
         </view>
-      </view>
-    </block>
+      </block>
+    </scroll-view>
   </view>
 </view>
