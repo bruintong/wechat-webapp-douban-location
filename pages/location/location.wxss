@@ -95,5 +95,6 @@
 
 .event-scroll {
   width: 100%;
+  height: 366rpx;
   white-space: nowrap;
 }
