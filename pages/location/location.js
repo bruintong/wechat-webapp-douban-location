@@ -108,7 +108,7 @@ Page({
     var cityUid = app.globalData.cityUid;
     var currentLoc = null;
     if (!locs[cityUid]) {
-      currentLoc = locs[defaultUid];
+      currentLoc = locs[this.data.defaultUid];
     } else {
       currentLoc = locs[cityUid];
     }
