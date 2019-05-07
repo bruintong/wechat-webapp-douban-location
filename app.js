@@ -12,11 +12,11 @@ App({
         locId: undefined,
         eventCategory: undefined,
         slogan: "在这陌生的城市里能与你相遇，真好",
-        doubanBase: "https://api.douban.com",
-        loc_list_url: "/v2/loc/list",
-        loc_url: "/v2/loc/",
-        event_list_url: "/v2/event/list",
-        event_url: "/v2/event/"
+        doubanBase: "https://www.easy-mock.com/mock/5cd0faf6e1fe52746e062d07/weapp/douban/",
+        loc_list_url: "loc/list",
+        loc_url: "loc/",
+        event_list_url: "event/list",
+        event_url: "event/detail/"
     },
     onLaunch: function () {
         // Do something initial when launch.
@@ -44,12 +44,12 @@ App({
         } else {
             wx.login({
                 success: function (res) {
-                    wx.getUserInfo({
-                        success: function (res) {
-                            that.globalData.userInfo = res.userInfo;
-                            typeof cb == "function" && cb(that.globalData.userInfo);
-                        }
-                    });
+                    // wx.getUserInfo({
+                    //     success: function (res) {
+                    //         that.globalData.userInfo = res.userInfo;
+                    //         typeof cb == "function" && cb(that.globalData.userInfo);
+                    //     }
+                    // });
                 }
             });
         }

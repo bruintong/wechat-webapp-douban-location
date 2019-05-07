@@ -21,10 +21,10 @@ Page({
       console.log("latitude: " + options.latitude + ", longitude" + options.longitude);
     }
     // 获取用户所在的城市uid
-    if (typeof app.globalData.userInfo.city == "string") {
-      var cityUid = app.globalData.userInfo.city.toLowerCase();
-      app.globalData.cityUid = cityUid;
-    }
+    // if (typeof app.globalData.userInfo.city == "string") {
+    //   var cityUid = app.globalData.userInfo.city.toLowerCase();
+    //   app.globalData.cityUid = cityUid;
+    // }
 
     // 组装活动类型
     var eventCategory = {};
@@ -81,10 +81,6 @@ Page({
     var cityListURL = app.globalData.doubanBase + app.globalData.loc_list_url;
     wx.request({
       url: cityListURL,
-      data: {
-        "start": 0,
-        "count": 500
-      },
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       header: { 'content-type': 'json' }, // 设置请求的 header
       success: function (res) {

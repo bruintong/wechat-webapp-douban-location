@@ -1,7 +1,7 @@
 # 微信小程序版豆瓣同城
 ## 概述
 微信小程序版豆瓣同城（非官方出品）
-- 数据来源：[豆瓣同城API](https://developers.douban.com/wiki/?title=event_v2)
+- 数据来源：Easy Mock 模拟数据
 - 开发工具：微信开发者工具 0.14.140900
 
 
